@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #ededed;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  background-image:
+    radial-gradient(ellipse at top, #1a1a2e, transparent),
+    radial-gradient(ellipse at bottom, #0f3460, transparent);
+  min-height: 100vh;
+  position: relative;
+}
+
+@layer components {
+  .terminal-glass {
+    @apply backdrop-blur-xl bg-terminal-bg border border-gray-700/50 rounded-2xl shadow-2xl;
+    box-shadow:
+      0 20px 70px rgba(0, 0, 0, 0.5),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+
+  .terminal-text {
+    @apply text-terminal-text font-mono text-sm;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+
+  .terminal-cursor {
+    @apply inline-block w-2 h-4 bg-terminal-cursor animate-cursor-blink;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+  }
+
+  .command-input {
+    @apply bg-transparent border-none outline-none text-terminal-text;
+    caret-color: transparent;
+  }
+
+  .noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.02;
+    z-index: 1;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.1) 2px,
+        rgba(255, 255, 255, 0.1) 4px
+      );
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 65, 0.3) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 255, 65, 0.3);
+    border-radius: 3px;
+  }
+}
