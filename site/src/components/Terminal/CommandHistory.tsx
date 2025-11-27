@@ -25,9 +25,17 @@ export default function CommandHistory({ history }: CommandHistoryProps) {
       case 'error':
         return <TextBlock key={index} content={output.content} isError />
       case 'link':
-        return <LinkBlock key={index} {...output} />
+        return output.url ? (
+          <LinkBlock key={index} content={output.content} url={output.url} icon={output.icon} />
+        ) : (
+          <TextBlock key={index} content={output.content} />
+        )
       case 'action':
-        return <ActionBlock key={index} {...output} />
+        return output.action ? (
+          <ActionBlock key={index} content={output.content} action={output.action} url={output.url} />
+        ) : (
+          <TextBlock key={index} content={output.content} />
+        )
       case 'markdown':
         return <MarkdownBlock key={index} content={output.content} />
       default:

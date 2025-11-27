@@ -4,7 +4,7 @@ interface PromptProps {
   value: string
   onChange: (value: string) => void
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  inputRef: RefObject<HTMLInputElement>
+  inputRef: RefObject<HTMLInputElement | null>
 }
 
 export default function Prompt({ value, onChange, onKeyDown, inputRef }: PromptProps) {
