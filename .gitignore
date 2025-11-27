@@ -2,10 +2,12 @@
 node_modules/
 .pnp
 .pnp.js
+.yarn/
 
 # Testing
 coverage/
 .nyc_output
+*.lcov
 
 # Next.js
 .next/
@@ -13,8 +15,9 @@ out/
 build/
 dist/
 
-# Production
+# Production builds
 *.local
+.cache/
 
 # Debug
 npm-debug.log*
@@ -22,10 +25,14 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
+lerna-debug.log*
 
-# Env files
+# Environment variables (包含个人信息和密钥)
 .env
 .env*.local
+.env.production
+.env.development
+!.env.example
 
 # IDE
 .vscode/*
@@ -34,11 +41,16 @@ pnpm-debug.log*
 .idea/
 *.swp
 *.swo
+*.swn
 *~
 .DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
 
 # TypeScript
 *.tsbuildinfo
+next-env.d.ts
 
 # Turbo
 .turbo
@@ -49,7 +61,73 @@ pnpm-debug.log*
 # PWA
 public/sw.js
 public/workbox-*.js
+public/worker-*.js
 
-# Config files (use .example files instead)
+# 个人配置文件 (使用 .example 文件作为模板)
 site/src/config/profile.ts
 site/src/config/analytics.ts
+site/src/config/social.ts
+site/src/config/personal.ts
+
+# 个人数据文件
+site/public/resume.pdf
+site/public/cv.pdf
+site/public/portfolio.pdf
+*.pdf
+!sample.pdf
+
+# 私密内容
+secrets/
+private/
+credentials/
+*.key
+*.pem
+*.cert
+*.crt
+
+# 备份文件
+*.backup
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+
+# 日志文件
+logs/
+*.log
+
+# 系统文件
+.directory
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# 个人笔记和草稿
+notes/
+drafts/
+TODO.md
+NOTES.md
+personal-notes.md
+
+# 统计和分析
+analytics/
+.statistics/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 临时文件
+tmp/
+temp/
+
+# 上传文件夹（可能包含个人文件）
+uploads/
+public/uploads/
+
+# 生成的文件
+generated/
+.generated/
