@@ -1,180 +1,185 @@
-# CLI Personal Website
+# My Personal Website
 
-[![CI](https://github.com/ruoxiangxu/CLI-personal-website/actions/workflows/ci.yml/badge.svg)](https://github.com/ruoxiangxu/CLI-personal-website/actions/workflows/ci.yml)
-[![Deploy](https://github.com/ruoxiangxu/CLI-personal-website/actions/workflows/deploy.yml/badge.svg)](https://github.com/ruoxiangxu/CLI-personal-website/actions/workflows/deploy.yml)
+终端风格的个人作品集网站，带有玻璃态设计和 Linux 风格的命令行交互。
 
-An interactive terminal-style personal portfolio website with glassmorphism design and Linux-style commands.
+## 快速开始
 
-## ✨ Features
+### 安装依赖
 
-- 🖥️ **Terminal Interface**: Floating glassmorphism terminal with command-line interaction
-- ⌨️ **Linux-style Commands**: Familiar commands like `help`, `about`, `resume`, `projects`, etc.
-- 🎨 **Beautiful Design**: Apple-inspired aesthetics with smooth animations
-- 📱 **Responsive**: Works perfectly on desktop and mobile devices
-- 🚀 **Fast & Static**: Built with Next.js and deployed as static site
-- 🛠️ **Customizable**: Template-based design for easy personalization
-
-## 🚀 Quick Start
-
-### Fork and Clone
-
-1. Fork this repository
-2. Clone your forked repository:
-```bash
-git clone https://github.com/YOUR_USERNAME/CLI-personal-website.git
-cd CLI-personal-website
-```
-
-### Setup
-
-1. Install dependencies:
 ```bash
 pnpm install
 ```
 
-2. Copy configuration files:
-```bash
-cp site/.env.example site/.env.local
-cp site/src/config/profile.example.ts site/src/config/profile.ts
-```
+### 本地开发
 
-3. Customize your profile in `site/src/config/profile.ts`
-
-4. Run development server:
 ```bash
 pnpm dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000)
+打开 [http://localhost:3000](http://localhost:3000) 查看效果。
 
-## 📝 Customization
-
-### Personal Information
-
-Edit `site/src/config/profile.ts` to update:
-- Personal details (name, title, email, location)
-- Social links
-- Projects
-- Skills
-- Bio
-
-### Commands
-
-Modify `site/src/config/commands.ts` to:
-- Add new commands
-- Customize command outputs
-- Add easter eggs
-
-### Styling
-
-Update `site/tailwind.config.ts` and `site/src/styles/globals.css` for:
-- Color schemes
-- Fonts
-- Animations
-- Terminal appearance
-
-### Resume
-
-Place your `resume.pdf` in the GitHub Pages repository and update the URL in `.env.local`:
-```env
-NEXT_PUBLIC_RESUME_URL=https://yourdomain.com/resume.pdf
-```
-
-## 🚢 Deployment
-
-### GitHub Pages
-
-1. Enable GitHub Pages in your repository settings
-2. The workflow will automatically deploy to GitHub Pages on push to `main`
-
-### Custom Domain
-
-1. Add your custom domain in GitHub Pages settings
-2. Update DNS records:
-   - CNAME: `www` → `username.github.io`
-   - A records for apex domain (optional)
-
-3. Update environment variables:
-```env
-NEXT_PUBLIC_PRIMARY_DOMAIN=yourdomain.com
-NEXT_PUBLIC_FALLBACK_DOMAIN=username.github.io
-```
-
-## 📦 Project Structure
-
-```
-CLI-personal-website/
-├── site/                    # Next.js application
-│   ├── src/
-│   │   ├── app/            # App router pages
-│   │   ├── components/     # React components
-│   │   │   ├── Terminal/   # Terminal UI components
-│   │   │   └── OutputBlocks/ # Command output renderers
-│   │   ├── config/         # Configuration files
-│   │   ├── lib/           # Utilities and logic
-│   │   └── styles/        # Global styles
-│   └── public/            # Static assets
-├── infra/workflows/       # GitHub Actions
-└── DESIGN.md             # Architecture documentation
-```
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Package Manager**: pnpm
-- **Deployment**: GitHub Pages
-
-## 📜 Available Commands
-
-| Command | Description |
-|---------|------------|
-| `help` | Show all available commands |
-| `about` | Display personal information |
-| `resume` | Open resume PDF |
-| `projects` | List portfolio projects |
-| `contact` | Show contact information |
-| `skills` | Display technical skills |
-| `clear` | Clear the terminal |
-| `theme` | Change terminal theme |
-| `coffee` | Brew some virtual coffee ☕ |
-| `matrix` | Enter the matrix |
-
-## 🔧 Development
+### 构建和部署
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Run development server
-pnpm dev
-
-# Build for production
+# 构建生产版本
 pnpm build
 
-# Export static files
-pnpm export
-
-# Run type checking
-pnpm --filter site exec tsc --noEmit
+# 预览构建结果
+pnpm start
 ```
 
-## 📄 License
+## 配置个人信息
 
-MIT License - Feel free to use this template for your own portfolio!
+所有个人信息集中在 **`src/config/site.config.ts`** 文件中，修改这个文件即可更新整个网站内容：
 
-## 🤝 Contributing
+```typescript
+export const siteConfig = {
+  name: 'Your Name',              // 你的名字
+  title: 'Software Engineer',      // 职位
+  email: 'your.email@example.com', // 邮箱
+  location: 'San Francisco, CA',   // 所在地
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+  education: {
+    university: 'Carnegie Mellon University',
+    degree: 'B.S. Computer Science',
+  },
 
-## 🙏 Acknowledgments
+  bio: `你的个人简介...`,
 
-- Inspired by terminal interfaces and command-line aesthetics
-- Built with modern web technologies
-- Designed for developers who love the terminal
+  social: {
+    github: 'https://github.com/yourusername',
+    linkedin: 'https://linkedin.com/in/yourusername',
+    twitter: 'https://twitter.com/yourusername',
+    website: 'https://yourwebsite.com',
+  },
 
----
+  skills: {
+    languages: ['JavaScript', 'TypeScript', ...],
+    frontend: ['React', 'Next.js', ...],
+    backend: ['Node.js', 'Express', ...],
+    tools: ['Docker', 'Kubernetes', ...],
+  },
 
-Made with ❤️ by the open source community
+  projects: [
+    {
+      name: 'Project Name',
+      description: 'Project description',
+      url: 'https://github.com/...',
+      demo: 'https://...',
+      tech: ['React', 'Node.js'],
+    },
+    // 添加更多项目...
+  ],
+}
+```
+
+## 部署到 GitHub Pages
+
+这个项目可以直接部署到 GitHub Pages（username.github.io）：
+
+1. 在 GitHub 创建一个名为 `username.github.io` 的仓库
+2. 将本项目推送到该仓库
+3. 配置 GitHub Actions 自动部署（见下文）
+
+### GitHub Actions 自动部署
+
+创建 `.github/workflows/deploy.yml`：
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+```
+
+## 项目结构
+
+```
+personal-website/
+├── src/
+│   ├── app/              # Next.js 页面
+│   ├── components/       # React 组件
+│   │   ├── Terminal/     # 终端 UI 组件
+│   │   └── OutputBlocks/ # 命令输出渲染器
+│   ├── config/
+│   │   └── site.config.ts  # 🔥 所有个人信息都在这里！
+│   ├── lib/              # 工具函数和逻辑
+│   └── styles/           # 全局样式
+├── public/               # 静态资源（简历 PDF 等）
+├── next.config.mjs       # Next.js 配置
+└── package.json
+```
+
+## 技术栈
+
+- **框架**: Next.js 15 with App Router
+- **语言**: TypeScript
+- **样式**: Tailwind CSS
+- **动画**: Framer Motion
+- **包管理器**: pnpm
+- **部署**: GitHub Pages (静态导出)
+
+## 可用命令
+
+在终端中输入以下命令：
+
+| 命令 | 说明 |
+|------|------|
+| `help` | 显示所有可用命令 |
+| `about` | 显示个人简介 |
+| `resume` | 打开简历 PDF |
+| `projects` | 查看项目列表 |
+| `contact` | 显示联系方式 |
+| `skills` | 显示技术技能 |
+| `clear` | 清空终端 |
+| `theme` | 切换主题 |
+| `coffee` | 煮杯咖啡 ☕ |
+| `matrix` | 进入黑客帝国 |
+
+## 开发命令
+
+```bash
+# 安装依赖
+pnpm install
+
+# 本地开发
+pnpm dev
+
+# 构建生产版本
+pnpm build
+
+# 预览构建结果
+pnpm start
+
+# 代码检查
+pnpm lint
+```

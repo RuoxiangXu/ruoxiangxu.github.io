@@ -63,16 +63,10 @@ public/sw.js
 public/workbox-*.js
 public/worker-*.js
 
-# 个人配置文件 (使用 .example 文件作为模板)
-site/src/config/profile.ts
-site/src/config/analytics.ts
-site/src/config/social.ts
-site/src/config/personal.ts
-
 # 个人数据文件
-site/public/resume.pdf
-site/public/cv.pdf
-site/public/portfolio.pdf
+public/resume.pdf
+public/cv.pdf
+public/portfolio.pdf
 *.pdf
 !sample.pdf
 

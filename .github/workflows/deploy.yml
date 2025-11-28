@@ -34,11 +34,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
+      - name: Build and export
         run: pnpm build
-
-      - name: Export static files
-        run: pnpm export
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -46,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './site/out'
+          path: './out'
 
   deploy:
     environment:

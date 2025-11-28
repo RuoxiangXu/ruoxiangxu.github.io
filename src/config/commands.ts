@@ -1,4 +1,5 @@
 import { Command } from '@/lib/types'
+import { siteConfig } from './site.config'
 
 export const commands: Command[] = [
   {
@@ -21,13 +22,10 @@ export const commands: Command[] = [
     description: 'Learn about me',
     handler: () => ({
       type: 'text',
-      content: `Hi! I'm a passionate software engineer with expertise in full-stack development.
+      content: `${siteConfig.bio}
 
-I love building interactive experiences and solving complex problems.
-Currently focused on web technologies and cloud architecture.
-
-Education: Carnegie Mellon University
-Location: San Francisco, CA
+Education: ${siteConfig.education.university}
+Location: ${siteConfig.location}
 
 Use "projects" to see my work, or "contact" to get in touch!`
     })
@@ -45,24 +43,25 @@ Use "projects" to see my work, or "contact" to get in touch!`
   {
     name: 'projects',
     description: 'View my projects',
-    handler: () => ({
-      type: 'markdown',
-      content: `## Featured Projects
+    handler: () => {
+      const projectList = siteConfig.projects
+        .map((project, index) => {
+          const links = []
+          if (project.url) links.push(`[GitHub](${project.url})`)
+          if (project.demo) links.push(`[Live Demo](${project.demo})`)
+          const linkText = links.length > 0 ? ` - ${links.join(' | ')}` : ''
 
-### 🚀 Project Alpha
-A full-stack web application built with React and Node.js
-[View on GitHub](https://github.com)
+          return `### ${index === 0 ? '🚀' : index === 1 ? '🎨' : '📊'} ${project.name}
+${project.description}${linkText}
+**Tech:** ${project.tech.map(t => `\`${t}\``).join(' ')}`
+        })
+        .join('\n\n')
 
-### 🎨 Creative Tools
-An interactive design toolkit for developers
-[Live Demo](https://example.com)
-
-### 📊 Data Visualizer
-Real-time data visualization platform
-[Learn More](https://github.com)
-
-Use "project [name]" for more details about a specific project.`
-    })
+      return {
+        type: 'markdown',
+        content: `## Featured Projects\n\n${projectList}`
+      }
+    }
   },
   {
     name: 'contact',
@@ -71,10 +70,11 @@ Use "project [name]" for more details about a specific project.`
       type: 'markdown',
       content: `## Contact Information
 
-📧 Email: [your.email@example.com](mailto:your.email@example.com)
-💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com)
-🐦 Twitter: [@yourhandle](https://twitter.com)
-📍 Location: San Francisco, CA
+📧 Email: [${siteConfig.email}](mailto:${siteConfig.email})
+💼 LinkedIn: [LinkedIn Profile](${siteConfig.social.linkedin})
+🐙 GitHub: [GitHub Profile](${siteConfig.social.github})
+🐦 Twitter: [Twitter](${siteConfig.social.twitter})
+📍 Location: ${siteConfig.location}
 
 Feel free to reach out for collaborations or opportunities!`
     })
@@ -82,22 +82,25 @@ Feel free to reach out for collaborations or opportunities!`
   {
     name: 'skills',
     description: 'View my technical skills',
-    handler: () => ({
-      type: 'markdown',
-      content: `## Technical Skills
+    handler: () => {
+      const { languages, frontend, backend, tools } = siteConfig.skills
+      return {
+        type: 'markdown',
+        content: `## Technical Skills
 
 ### Languages
-\`JavaScript\` \`TypeScript\` \`Python\` \`Go\` \`Rust\`
+${languages.map(s => `\`${s}\``).join(' ')}
 
 ### Frontend
-\`React\` \`Next.js\` \`Vue\` \`Tailwind CSS\` \`Framer Motion\`
+${frontend.map(s => `\`${s}\``).join(' ')}
 
 ### Backend
-\`Node.js\` \`Express\` \`FastAPI\` \`GraphQL\` \`PostgreSQL\`
+${backend.map(s => `\`${s}\``).join(' ')}
 
 ### Tools & Platforms
-\`Docker\` \`Kubernetes\` \`AWS\` \`Git\` \`CI/CD\``
-    })
+${tools.map(s => `\`${s}\``).join(' ')}`
+      }
+    }
   },
   {
     name: 'history',
@@ -124,7 +127,7 @@ Feel free to reach out for collaborations or opportunities!`
       if (!theme) {
         return {
           type: 'text',
-          content: 'Usage: theme [light|dark]\nCurrent theme: dark'
+          content: `Usage: theme [light|dark]\nCurrent theme: ${siteConfig.theme.default}`
         }
       }
       return {
@@ -169,7 +172,7 @@ Follow the white rabbit.
     description: 'Display current user',
     handler: () => ({
       type: 'text',
-      content: 'visitor@portfolio'
+      content: siteConfig.theme.prompt
     })
   },
   {
