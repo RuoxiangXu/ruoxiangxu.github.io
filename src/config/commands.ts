@@ -3,6 +3,14 @@ import { siteConfig } from './site.config'
 
 export const commands: Command[] = [
   {
+    name: 'banner',
+    description: 'Display welcome banner',
+    handler: () => ({
+      type: 'banner',
+      content: ''
+    })
+  },
+  {
     name: 'help',
     description: 'Show available commands',
     handler: () => {

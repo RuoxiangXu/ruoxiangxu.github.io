@@ -70,34 +70,16 @@ Currently focused on web technologies and cloud architecture.`,
 
   // ===== 终端启动配置 =====
   boot: {
-    // ASCII Art - 启动时显示的艺术字
-    asciiArt: `
-   _____ __  __ _    _
-  / ____|  \\/  | |  | |
- | |    | \\  / | |  | |
- | |    | |\\/| | |  | |
- | |____| |  | | |__| |
-  \\_____|_|  |_|\\____/
-
- Carnegie Mellon University
-`,
     // 启动消息
     messages: [
       '[SYSTEM] Initializing terminal interface...',
-      '[SYSTEM] Loading personal portfolio v1.0.0',
-      '[SYSTEM] Establishing secure connection...',
+      '[SYSTEM] Loading system modules...',
+      '[SYSTEM] Establishing connection...',
       '[SYSTEM] Mounting filesystem...',
       '[SYSTEM] Loading user profile...',
-      '[SYSTEM] Starting command interpreter...',
+      '[SYSTEM] Starting shell...',
       '',
-      '========================================',
-      '',
-      'Welcome to my interactive portfolio!',
-      '',
-      'Type "help" to see available commands.',
-      'Type "about" to learn more about me.',
-      '',
-      '========================================',
+      '[OK] System initialized successfully',
     ],
   },
 

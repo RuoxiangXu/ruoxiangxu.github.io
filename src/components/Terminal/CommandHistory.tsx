@@ -3,6 +3,7 @@ import TextBlock from '../OutputBlocks/TextBlock'
 import LinkBlock from '../OutputBlocks/LinkBlock'
 import ActionBlock from '../OutputBlocks/ActionBlock'
 import MarkdownBlock from '../OutputBlocks/MarkdownBlock'
+import BannerBlock from '../OutputBlocks/BannerBlock'
 
 interface CommandHistoryProps {
   history: CommandOutput[]
@@ -38,6 +39,8 @@ export default function CommandHistory({ history }: CommandHistoryProps) {
         )
       case 'markdown':
         return <MarkdownBlock key={index} content={output.content} />
+      case 'banner':
+        return <BannerBlock key={index} />
       default:
         return null
     }

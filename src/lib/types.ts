@@ -1,5 +1,5 @@
 export interface CommandOutput {
-  type: 'command' | 'text' | 'error' | 'link' | 'action' | 'markdown'
+  type: 'command' | 'text' | 'error' | 'link' | 'action' | 'markdown' | 'banner'
   content: string
   url?: string
   icon?: string

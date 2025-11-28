@@ -77,8 +77,14 @@ export default function Terminal() {
     }
   }
 
-  const handleBootComplete = () => {
+  const handleBootComplete = async () => {
     setIsBooting(false)
+
+    // Automatically show banner and help after boot
+    const bannerResult = await executeCommand('banner')
+    const helpResult = await executeCommand('help')
+
+    setHistory([bannerResult, helpResult])
   }
 
   return (
