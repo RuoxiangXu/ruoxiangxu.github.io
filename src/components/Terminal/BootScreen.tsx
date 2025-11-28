@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { asciiArt, bootMessages } from '@/config/bootConfig'
+import { bootMessages } from '@/config/bootConfig'
 
 interface BootScreenProps {
   onComplete: () => void
@@ -26,14 +26,11 @@ export default function BootScreen({ onComplete }: BootScreenProps) {
 
   return (
     <div className="space-y-1">
-      <pre className="text-green-400 text-xs leading-tight">{asciiArt}</pre>
-      <div className="mt-4 space-y-1">
-        {displayedText.map((line, index) => (
-          <div key={index} className="text-xs opacity-80">
-            {line}
-          </div>
-        ))}
-      </div>
+      {displayedText.map((line, index) => (
+        <div key={index} className="text-xs opacity-80">
+          {line}
+        </div>
+      ))}
     </div>
   )
 }
