@@ -9,7 +9,6 @@ export function parseCommand(input: string): ParsedCommand {
 
   for (let i = 0; i < input.length; i++) {
     const char = input[i]
-    const nextChar = input[i + 1]
 
     if ((char === '"' || char === "'") && !inQuote) {
       inQuote = true

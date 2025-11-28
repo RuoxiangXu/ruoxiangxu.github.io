@@ -8,13 +8,7 @@ export default function ResumePage() {
     const resumeUrl = process.env.NEXT_PUBLIC_RESUME_URL ||
       'https://ruoxiangxu.com/resume.pdf'
 
-    // Fallback URLs
-    const fallbackUrls = [
-      'https://ruoxiangxu.com/resume.pdf',
-      'https://ruoxiangxu.github.io/resume.pdf'
-    ]
-
-    // Try primary URL first
+    // Redirect to resume
     window.location.href = resumeUrl
   }, [])
 
