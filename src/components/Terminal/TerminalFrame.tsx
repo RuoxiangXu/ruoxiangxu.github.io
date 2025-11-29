@@ -13,9 +13,12 @@ export default function TerminalFrame({ children }: TerminalFrameProps) {
           <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors cursor-pointer" />
           <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors cursor-pointer" />
         </div>
-        <div className="flex-1 text-center text-xs text-neutral-500 dark:text-neutral-400 font-medium">
-          terminal@ruoxiangxu.com
+        <div className="flex-1 text-center text-xs text-neutral-500 dark:text-neutral-400 font-semibold">
+          <div className="inline-flex items-center justify-center w-full">
+            terminal@ruoxiangxu.com
+          </div>
         </div>
+        <div className="w-16" aria-hidden="true" />
       </div>
       <div className="h-full pt-9 terminal-text">
         {children}

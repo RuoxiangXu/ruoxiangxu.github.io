@@ -11,7 +11,7 @@ const DEFAULT_TIPS = [
 export default function HelpBlock({ content, tips = DEFAULT_TIPS }: HelpBlockProps) {
   return (
     <div className="mt-4 text-left">
-      <div className="mb-2 text-sm font-semibold text-neutral-600 dark:text-neutral-300">
+      <div className="mb-2">
         Available Commands:
       </div>
       <pre className="text-xs font-mono text-neutral-600 dark:text-neutral-400 whitespace-pre">

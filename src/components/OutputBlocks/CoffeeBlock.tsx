@@ -3,37 +3,13 @@
 import { useEffect, useState } from 'react'
 
 export default function CoffeeBlock() {
-  const [steamLines, setSteamLines] = useState([
-    { chars: '∼ ≈ ∼', opacity: 0.3, offset: 0 },
-    { chars: '≈ ∼ ≈', opacity: 0.5, offset: 1 },
-    { chars: '∼ ≋ ∼', opacity: 0.7, offset: 2 },
-    { chars: '≈ ∼ ≈', opacity: 0.5, offset: 1 },
-    { chars: '∼ ≈ ∼', opacity: 0.3, offset: 0 },
-  ])
+  const staticLines = ['∽  ≈  ∽', '≈  ∿  ≈', '∼  ≋  ∼', '≈  ∼  ≈', '∽  ≈  ∽']
+  const [phase, setPhase] = useState(0)
 
   useEffect(() => {
-    const steamChars = ['∼', '≈', '≋', '~', '∿']
-
     const interval = setInterval(() => {
-      setSteamLines(prev => prev.map((line) => {
-        // Random steam characters
-        const chars = Array(3).fill(0).map(() =>
-          steamChars[Math.floor(Math.random() * steamChars.length)]
-        ).join(' ')
-
-        // Rising animation with random offset
-        const offset = (line.offset + 0.3 + Math.random() * 0.2) % 4
-
-        // Fade in/out based on height
-        const opacity = offset < 2 ? 0.3 + offset * 0.2 : 0.7 - (offset - 2) * 0.3
-
-        return {
-          chars,
-          opacity: Math.max(0.2, Math.min(0.8, opacity)),
-          offset
-        }
-      }))
-    }, 200)
+      setPhase(prev => prev + 0.35)
+    }, 140)
 
     return () => clearInterval(interval)
   }, [])
@@ -42,21 +18,25 @@ export default function CoffeeBlock() {
     <div className="my-3 font-mono">
       {/* Enhanced Steam */}
       <div className="text-center mb-1 relative" style={{ height: '80px' }}>
-        {steamLines.map((line, i) => (
-          <div
-            key={i}
-            className="absolute w-full transition-all duration-200 ease-out"
-            style={{
-              opacity: line.opacity,
-              transform: `translateY(${60 - line.offset * 15}px) translateX(${Math.sin(line.offset) * 5}px)`,
-              color: `hsl(${200 + i * 15}, 60%, ${50 + line.opacity * 30}%)`,
-              fontSize: '0.75rem',
-              textShadow: `0 0 ${line.opacity * 10}px currentColor`
-            }}
-          >
-            {line.chars}
-          </div>
-        ))}
+        {staticLines.map((line, i) => {
+          const intensity = (Math.sin(phase + i * 0.8) + 1) / 2 // 0-1
+          return (
+            <div
+              key={i}
+              className="absolute w-full transition-all duration-300 ease-out"
+              style={{
+                transform: `translateY(${60 - i * 12}px) translateX(${(intensity - 0.5) * 6}px)` ,
+                color: `rgba(255,255,255,${0.35 + intensity * 0.45})`,
+                fontWeight: 400 + intensity * 300,
+                fontSize: `${0.7 + intensity * 0.18}rem`,
+                opacity: 0.3 + intensity * 0.6,
+                textShadow: `0 0 ${4 + intensity * 8}px rgba(255,255,255,${0.4 + intensity * 0.4})`
+              }}
+            >
+              {line}
+            </div>
+          )
+        })}
       </div>
 
       {/* Cup */}

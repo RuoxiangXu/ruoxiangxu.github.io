@@ -21,7 +21,17 @@ const config: Config = {
         },
       },
       fontFamily: {
-        mono: ['SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        mono: [
+          'SF Mono',
+          'SFMono-Regular',
+          'ui-monospace',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace'
+        ],
       },
       animation: {
         'cursor-blink': 'cursor-blink 1s infinite',

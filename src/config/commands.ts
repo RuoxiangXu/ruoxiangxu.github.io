@@ -75,34 +75,12 @@ Type 'github' or 'linkedin' to visit my profiles.`
   },
   {
     name: 'resume',
-    description: 'View my resume (-en or -cn)',
-    usage: 'resume [-en|-cn]',
-    handler: (args) => {
-      const lang = args[0]
-      if (lang === '-cn') {
-        return {
-          type: 'action',
-          content: 'Opening Chinese resume...',
-          action: 'open',
-          url: '/resume_cn.pdf'
-        }
-      } else if (lang === '-en') {
-        return {
-          type: 'action',
-          content: 'Opening English resume...',
-          action: 'open',
-          url: '/resume_en.pdf'
-        }
-      } else {
-        return {
-          type: 'text',
-          content: `Usage: resume [-en|-cn]
-
-  -en    Open English resume
-  -cn    Open Chinese resume (中文简历)`
-        }
-      }
-    }
+    description: 'Display my resume',
+    handler: () => ({
+      type: 'text',
+      content: `🛠️ The resume section is still under renovation.
+I'm polishing refreshed English and Chinese versions—please check back soon or run 'contact' if you need them directly.`
+    })
   },
   {
     name: 'github',

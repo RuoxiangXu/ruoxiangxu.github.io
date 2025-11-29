@@ -26,6 +26,7 @@
 
 body {
   margin: 0;
+  font-family: 'SFMono-Regular', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
   color: var(--foreground);
   background: var(--background);
   min-height: 100dvh;
