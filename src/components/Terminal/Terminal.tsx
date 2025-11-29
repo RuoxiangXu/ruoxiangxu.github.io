@@ -5,7 +5,7 @@ import TerminalFrame from './TerminalFrame'
 import Prompt from './Prompt'
 import CommandHistory from './CommandHistory'
 import BootScreen from './BootScreen'
-import { executeCommand } from '@/lib/commandRegistry'
+import { executeCommand, getCommandRegistry } from '@/lib/commandRegistry'
 import { CommandOutput } from '@/lib/types'
 
 export default function Terminal() {
@@ -73,26 +73,63 @@ export default function Terminal() {
       }
     } else if (e.key === 'Tab') {
       e.preventDefault()
-      // TODO: Implement tab completion
+      // Tab completion
+      const input = currentInput.trim()
+      if (!input) return
+
+      // Get all available commands from the registry
+      const registry = getCommandRegistry()
+      const availableCommands = Array.from(registry.keys())
+
+      // Find matching commands
+      const matches = availableCommands.filter(cmd => cmd.startsWith(input))
+
+      if (matches.length === 1) {
+        // Single match - autocomplete
+        setCurrentInput(matches[0])
+      } else if (matches.length > 1) {
+        // Multiple matches - show them
+        const matchList = matches.join('  ')
+        const output: CommandOutput = {
+          type: 'text',
+          content: matchList
+        }
+        setHistory(prev => [...prev, output])
+      }
     }
   }
 
   const handleBootComplete = async () => {
     setIsBooting(false)
 
-    // Automatically show banner and help after boot
+    // Automatically show banner command after boot
+    const userCommand: CommandOutput = {
+      type: 'command',
+      content: 'banner',
+    }
     const bannerResult = await executeCommand('banner')
-    const helpResult = await executeCommand('help')
 
-    setHistory([bannerResult, helpResult])
+    setHistory([userCommand, bannerResult])
+  }
+
+  const handleTerminalClick = () => {
+    const container = terminalRef.current
+    if (!container) return
+
+    const { scrollTop, scrollHeight, clientHeight } = container
+    const distanceFromBottom = scrollHeight - (scrollTop + clientHeight)
+
+    if (distanceFromBottom <= 20) {
+      inputRef.current?.focus()
+    }
   }
 
   return (
     <TerminalFrame>
       <div
         ref={terminalRef}
-        className="h-full overflow-y-auto scrollbar-thin p-6"
-        onClick={() => inputRef.current?.focus()}
+        className="h-full overflow-y-auto scrollbar-thin px-4 py-3"
+        onClick={handleTerminalClick}
       >
         {isBooting ? (
           <BootScreen onComplete={handleBootComplete} />

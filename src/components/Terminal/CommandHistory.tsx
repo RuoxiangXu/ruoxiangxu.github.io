@@ -4,6 +4,10 @@ import LinkBlock from '../OutputBlocks/LinkBlock'
 import ActionBlock from '../OutputBlocks/ActionBlock'
 import MarkdownBlock from '../OutputBlocks/MarkdownBlock'
 import BannerBlock from '../OutputBlocks/BannerBlock'
+import HelpBlock from '../OutputBlocks/HelpBlock'
+import CoffeeBlock from '../OutputBlocks/CoffeeBlock'
+import MatrixBlock from '../OutputBlocks/MatrixBlock'
+import CountdownRedirectBlock from '../OutputBlocks/CountdownRedirectBlock'
 
 interface CommandHistoryProps {
   history: CommandOutput[]
@@ -15,9 +19,9 @@ export default function CommandHistory({ history }: CommandHistoryProps) {
       case 'command':
         return (
           <div key={index} className="flex items-center">
-            <span className="text-green-400 mr-2">visitor@portfolio</span>
-            <span className="text-blue-400 mr-2">~</span>
-            <span className="text-yellow-400 mr-2">$</span>
+            <span className="text-neutral-700 dark:text-neutral-300 font-semibold mr-2">guest@ruoxiangxu.com</span>
+            <span className="text-neutral-600 dark:text-neutral-400 mr-2">~</span>
+            <span className="text-neutral-700 dark:text-neutral-300 mr-2">$</span>
             <span>{output.content}</span>
           </div>
         )
@@ -40,7 +44,19 @@ export default function CommandHistory({ history }: CommandHistoryProps) {
       case 'markdown':
         return <MarkdownBlock key={index} content={output.content} />
       case 'banner':
-        return <BannerBlock key={index} />
+        return <BannerBlock key={index} content={output.content} />
+      case 'help':
+        return <HelpBlock key={index} content={output.content} tips={output.tips} />
+      case 'coffee':
+        return <CoffeeBlock key={index} />
+      case 'matrix':
+        return <MatrixBlock key={index} />
+      case 'countdown-redirect':
+        return output.content ? (
+          <CountdownRedirectBlock key={index} url={output.content} />
+        ) : (
+          <TextBlock key={index} content="No URL provided" />
+        )
       default:
         return null
     }

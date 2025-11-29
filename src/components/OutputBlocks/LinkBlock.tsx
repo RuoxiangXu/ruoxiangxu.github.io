@@ -12,11 +12,11 @@ export default function LinkBlock({ content, url, icon }: LinkBlockProps) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors"
+        className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-500 dark:hover:text-neutral-400 underline underline-offset-2 transition-colors"
       >
         {content}
       </a>
-      <span className="text-gray-500 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="text-neutral-500 dark:text-neutral-400 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
         ↗
       </span>
     </div>

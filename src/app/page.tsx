@@ -4,8 +4,7 @@ import Terminal from '@/components/Terminal/Terminal'
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
-      <div className="noise" />
+    <main className="w-full flex justify-center text-[0.75rem]">
       <Terminal />
     </main>
   )

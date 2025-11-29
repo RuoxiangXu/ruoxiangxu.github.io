@@ -1,9 +1,10 @@
 export interface CommandOutput {
-  type: 'command' | 'text' | 'error' | 'link' | 'action' | 'markdown' | 'banner'
+  type: 'command' | 'text' | 'error' | 'link' | 'action' | 'markdown' | 'banner' | 'help' | 'coffee' | 'matrix' | 'countdown-redirect'
   content: string
   url?: string
   icon?: string
   action?: string
+  tips?: string[]
 }
 
 export interface Command {

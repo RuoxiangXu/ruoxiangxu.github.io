@@ -8,7 +8,7 @@ interface MarkdownBlockProps {
 
 export default function MarkdownBlock({ content }: MarkdownBlockProps) {
   return (
-    <div className="prose prose-invert prose-sm max-w-none">
+    <div className="prose dark:prose-invert prose-sm max-w-none prose-neutral">
       <ReactMarkdown
         components={{
           a: ({ href, children }) => (
@@ -16,13 +16,13 @@ export default function MarkdownBlock({ content }: MarkdownBlockProps) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 underline"
+              className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-500 dark:hover:text-neutral-400 underline"
             >
               {children}
             </a>
           ),
           code: ({ children }) => (
-            <code className="bg-gray-800 px-1 py-0.5 rounded text-green-400">
+            <code className="bg-neutral-200 dark:bg-neutral-800 px-1 py-0.5 rounded text-neutral-800 dark:text-neutral-200">
               {children}
             </code>
           ),

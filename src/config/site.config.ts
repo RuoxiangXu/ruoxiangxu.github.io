@@ -88,7 +88,7 @@ Currently focused on web technologies and cloud architecture.`,
     // 默认主题（可以是 'light' 或 'dark'）
     default: 'dark',
     // 终端提示符
-    prompt: 'visitor@portfolio',
+    prompt: 'guest@ruoxiangxu.com',
   },
 }
 

@@ -80,3 +80,7 @@ function levenshteinDistance(str1: string, str2: string): number {
 export function getAvailableCommands(): Command[] {
   return commands
 }
+
+export function getCommandRegistry(): Map<string, Command> {
+  return commandMap
+}
