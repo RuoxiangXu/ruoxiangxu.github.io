@@ -60,14 +60,14 @@ export default function CountdownRedirectBlock({ url, title }: CountdownRedirect
         </a>
       </div>
       {countdown > 0 && !cancelled && (
-        <>
-          <div className="opacity-60">
+        <div className="opacity-60">
+          <div>
             Redirecting automatically in {countdown} second{countdown !== 1 ? 's' : ''}...
           </div>
-          <div className="opacity-60">
+          <div>
             Press Ctrl + C to cancel this redirect.
           </div>
-        </>
+        </div>
       )}
       {cancelled && (
         <div className="opacity-70">
