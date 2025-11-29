@@ -19,7 +19,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setMounted(true)
     // Load theme from localStorage
     const savedTheme = localStorage.getItem('theme') as Theme | null
-    const initialTheme = savedTheme || 'dark'
+    let initialTheme: Theme
+
+    if (savedTheme) {
+      initialTheme = savedTheme
+    } else {
+      const hour = new Date().getHours()
+      initialTheme = hour >= 7 && hour < 19 ? 'light' : 'dark'
+    }
     setTheme(initialTheme)
 
     // Set both data-theme and dark class
