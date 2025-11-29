@@ -10,17 +10,36 @@ interface CountdownRedirectBlockProps {
 
 export default function CountdownRedirectBlock({ url, title }: CountdownRedirectBlockProps) {
   const [countdown, setCountdown] = useState(3)
+  const [cancelled, setCancelled] = useState(false)
 
   useEffect(() => {
-    if (countdown > 0) {
-      const timer = setTimeout(() => {
-        setCountdown(countdown - 1)
-      }, 1000)
-      return () => clearTimeout(timer)
-    } else {
+    if (cancelled) return
+
+    if (countdown <= 0) {
       window.open(url, '_blank')
+      return
     }
-  }, [countdown, url])
+
+    const timer = setTimeout(() => {
+      setCountdown(prev => prev - 1)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [countdown, cancelled, url])
+
+  useEffect(() => {
+    if (cancelled || countdown <= 0) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && (event.key === 'c' || event.key === 'C')) {
+        event.preventDefault()
+        setCancelled(true)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [cancelled, countdown])
 
   return (
     <div className="my-2 text-terminal-text">
@@ -40,9 +59,19 @@ export default function CountdownRedirectBlock({ url, title }: CountdownRedirect
           {url}
         </a>
       </div>
-      {countdown > 0 && (
-        <div className="opacity-60">
-          Redirecting automatically in {countdown} second{countdown !== 1 ? 's' : ''}...
+      {countdown > 0 && !cancelled && (
+        <>
+          <div className="opacity-60">
+            Redirecting automatically in {countdown} second{countdown !== 1 ? 's' : ''}...
+          </div>
+          <div className="opacity-60">
+            Press Ctrl + C to cancel this redirect.
+          </div>
+        </>
+      )}
+      {cancelled && (
+        <div className="opacity-70">
+          Redirect cancelled. You can click the link above to open it manually.
         </div>
       )}
     </div>
