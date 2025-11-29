@@ -67,6 +67,7 @@ Type 'contact' to get in touch!`
 
 📧 Email (University): ruoxianx@andrew.cmu.edu
 📧 Email (Personal):   ruoxiangxu2002@gmail.com
+📧 Email (Backup):     ruoxiangxu@outlook.com
 
 Feel free to reach out for collaborations or opportunities!
 
@@ -113,7 +114,7 @@ I'm polishing refreshed English and Chinese versions—please check back soon or
   },
   {
     name: 'matrix',
-    description: 'Enter the matrix',
+    description: 'What will this command do?',
     handler: () => ({ type: 'matrix', content: '' })
   }
 ]

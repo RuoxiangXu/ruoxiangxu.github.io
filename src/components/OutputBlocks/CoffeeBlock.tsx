@@ -26,11 +26,11 @@ export default function CoffeeBlock() {
               className="absolute w-full transition-all duration-300 ease-out"
               style={{
                 transform: `translateY(${60 - i * 12}px) translateX(${(intensity - 0.5) * 6}px)` ,
-                color: `rgba(255,255,255,${0.35 + intensity * 0.45})`,
+                color: `rgba(var(--steam-base-rgb), ${0.35 + intensity * 0.45})`,
                 fontWeight: 400 + intensity * 300,
                 fontSize: `${0.7 + intensity * 0.18}rem`,
                 opacity: 0.3 + intensity * 0.6,
-                textShadow: `0 0 ${4 + intensity * 8}px rgba(255,255,255,${0.4 + intensity * 0.4})`
+                textShadow: `0 0 ${4 + intensity * 8}px rgba(var(--steam-base-rgb), ${0.4 + intensity * 0.4})`
               }}
             >
               {line}

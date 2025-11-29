@@ -36,7 +36,7 @@ export default function BannerBlock({ content }: BannerBlockProps) {
         </pre>
 
         <div className="mt-2 text-xs text-neutral-600 dark:text-neutral-400">
-          Welcome to my website. Type some commands to explore more.
+          Welcome to my website! Type some commands to explore more.
         </div>
       </div>
 

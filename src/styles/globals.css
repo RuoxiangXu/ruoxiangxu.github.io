@@ -11,6 +11,7 @@
   --terminal-border: #d4d4d4;
   --terminal-cursor: #666666;
   --terminal-muted: #8a8a8a;
+  --steam-base-rgb: 40, 40, 40;
 }
 
 /* Dark theme */
@@ -22,6 +23,7 @@
   --terminal-border: #404040;
   --terminal-cursor: #888888;
   --terminal-muted: #707070;
+  --steam-base-rgb: 255, 255, 255;
 }
 
 body {
