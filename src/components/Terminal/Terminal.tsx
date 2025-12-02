@@ -140,7 +140,7 @@ export default function Terminal() {
     setHistory([userCommand, bannerResult])
   }
 
-  const handleTerminalClick = (_event: React.MouseEvent<HTMLDivElement>) => {
+  const handleTerminalClick = () => {
     const selection = window.getSelection()
     if (selection && selection.toString().trim().length > 0) {
       return
