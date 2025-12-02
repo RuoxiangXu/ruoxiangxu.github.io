@@ -1,5 +1,10 @@
 import { Command } from '@/lib/types'
-import { siteConfig } from './site.config'
+
+const aboutMessage = `Hi there! I'm Ruoxiang, currently pursuing my M.S. in Mobile & IoT Engineering at Carnegie Mellon University's INI.
+
+My craft centers on software engineering, computer systems, and AI/LLM application development. And I get a genuine kick out of shaping software that's elegant, scalable, and fast.
+
+Off the terminal, you'll usually find me on a basketball court, experimenting in the kitchen, planning my next trip, or exploring anything on four wheels.`
 
 const buildCommandList = () =>
   commands
@@ -29,10 +34,7 @@ export const commands: Command[] = [
     description: 'Learn about me',
     handler: () => ({
       type: 'text',
-      content: `${siteConfig.bio}
-
-Education: ${siteConfig.education.university}
-Location: ${siteConfig.location}
+      content: `${aboutMessage}
 
 Type 'contact' to get in touch!`
     })
@@ -46,14 +48,21 @@ Type 'contact' to get in touch!`
 ========================================
 🎓 Carnegie Mellon University (2025.8 - 2026.12)
    Master of Science in Mobile and IoT Engineering (Information Networking Institute)
-   Focus: Computer Systems, Software Engineering, LLM Applications
    GPA: 4.0/4.0
+   Focus: Computer Systems, Software Engineering, LLM Applications
 
 🎓 Hong Kong Baptist University (2021.9 - 2025.6)
    Bachelor of Science in Computer Science
-   Focus: Software Engineering, AI/ML
    cGPA: 3.8/4.0; mGPA: 3.9/4.0
+   Focus: Software Engineering, AI/ML
    Awards: Scholastic Award; Dean's Award; First Class Award*2
+
+🎓 University of Oxford (2023.7 - 2023.8)
+   Summer Program: Artificial Intelligence and Machine Learning
+   GPA: 4.0/4.0
+   Award: Outstanding Performance Team Award
+
+🎓 Shenzhen Experimental High School (2018.9 - 2021.6)
 ========================================`
     })
   },
@@ -64,6 +73,10 @@ Type 'contact' to get in touch!`
       type: 'text',
       content: `Contact Information
 ========================================
+
+📱 Mobile (US): +1 (412)-965-5934
+📱 Mobile (CN): +86 136-9188-8248
+
 
 📧 Email (University): ruoxianx@andrew.cmu.edu
 📧 Email (Personal):   ruoxiangxu2002@gmail.com
@@ -79,8 +92,7 @@ Type 'github' or 'linkedin' to visit my profiles.`
     description: 'Display my resume',
     handler: () => ({
       type: 'text',
-      content: `🛠️ The resume section is still under renovation.
-I'm polishing refreshed English and Chinese versions—please check back soon or run 'contact' if you need them directly.`
+      content: `The resume section is private currently, type "linkedin" to learn more about my experiences.`
     })
   },
   {

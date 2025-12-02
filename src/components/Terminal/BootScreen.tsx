@@ -1,7 +1,17 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { bootMessages } from '@/config/bootConfig'
+
+const bootMessages = [
+  '[SYSTEM] Initializing terminal interface...',
+  '[SYSTEM] Loading system modules...',
+  '[SYSTEM] Establishing connection...',
+  '[SYSTEM] Mounting filesystem...',
+  '[SYSTEM] Loading user profile...',
+  '[SYSTEM] Starting shell...',
+  '',
+  '[OK] System initialized successfully'
+]
 
 interface BootScreenProps {
   onComplete: () => void
