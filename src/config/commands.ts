@@ -1,10 +1,10 @@
 import { Command } from '@/lib/types'
 
-const aboutMessage = `Hi there! I'm Ruoxiang, currently pursuing my M.S. in Mobile & IoT Engineering at Carnegie Mellon University's INI.
+const aboutMessage = `Hi there! I'm Ruoxiang XU (James, 徐若翔), currently pursuing my M.S. in Mobile & IoT Engineering at Carnegie Mellon University's Information Networking Institude.
 
 My craft centers on software engineering, computer systems, and AI/LLM application development. And I get a genuine kick out of shaping software that's elegant, scalable, and fast.
 
-Off the terminal, you'll usually find me on a basketball court, experimenting in the kitchen, planning my next trip, or exploring anything on four wheels.`
+Off the terminal, you'll usually find me on a basketball court, experimenting in the kitchen, planning my next trip, chasing light with a camera, or looking at an endless queue of cat videos—basically anything on four wheels or four paws.`
 
 const buildCommandList = () =>
   commands
