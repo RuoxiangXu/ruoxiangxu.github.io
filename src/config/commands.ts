@@ -77,7 +77,6 @@ Type 'contact' to get in touch!`
 📱 Mobile (US): +1 (412)-965-5934
 📱 Mobile (CN): +86 136-9188-8248
 
-
 📧 Email (University): ruoxianx@andrew.cmu.edu
 📧 Email (Personal):   ruoxiangxu2002@gmail.com
 📧 Email (Backup):     ruoxiangxu@outlook.com
