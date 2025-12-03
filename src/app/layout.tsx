@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle'
 import GithubButton from '@/components/GithubButton/GithubButton'
+import TemplateRepoButton from '@/components/TemplateRepoButton/TemplateRepoButton'
 
 export const metadata: Metadata = {
   title: 'terminal@ruoxiangxu.com',
@@ -29,7 +30,8 @@ export default function RootLayout({
             <div className="pointer-events-auto absolute top-4 left-4">
               <ThemeToggle />
             </div>
-            <div className="pointer-events-auto absolute top-4 right-4">
+            <div className="pointer-events-auto absolute top-4 right-4 flex items-center gap-3">
+              <TemplateRepoButton />
               <GithubButton />
             </div>
           </div>
