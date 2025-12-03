@@ -14,42 +14,72 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
+  const [hasManualPreference, setHasManualPreference] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-    // Load theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    let initialTheme: Theme
-
-    if (savedTheme) {
-      initialTheme = savedTheme
-    } else {
-      const hour = new Date().getHours()
-      initialTheme = hour >= 7 && hour < 19 ? 'light' : 'dark'
-    }
-    setTheme(initialTheme)
-
-    // Set both data-theme and dark class
-    document.documentElement.setAttribute('data-theme', initialTheme)
-    if (initialTheme === 'dark') {
+  const applyTheme = (nextTheme: Theme) => {
+    document.documentElement.setAttribute('data-theme', nextTheme)
+    if (nextTheme === 'dark') {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
+  }
+
+  const detectThemeByLocalTime = (): Theme => {
+    try {
+      const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        hour12: false,
+        timeZone: timeZone || undefined
+      })
+      const hour = parseInt(formatter.format(new Date()), 10)
+      return hour >= 7 && hour < 19 ? 'light' : 'dark'
+    } catch {
+      const fallbackHour = new Date().getHours()
+      return fallbackHour >= 7 && fallbackHour < 19 ? 'light' : 'dark'
+    }
+  }
+
+  useEffect(() => {
+    // Load theme preference from localStorage
+    const savedTheme = localStorage.getItem('theme') as Theme | null
+    if (savedTheme) {
+      setTheme(savedTheme)
+      setHasManualPreference(true)
+      applyTheme(savedTheme)
+    } else {
+      const autoTheme = detectThemeByLocalTime()
+      setTheme(autoTheme)
+      setHasManualPreference(false)
+      applyTheme(autoTheme)
+    }
+    setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (hasManualPreference) return
+
+    const interval = setInterval(() => {
+      const autoTheme = detectThemeByLocalTime()
+      setTheme(prev => {
+        if (prev !== autoTheme) {
+          applyTheme(autoTheme)
+          return autoTheme
+        }
+        return prev
+      })
+    }, 60 * 1000)
+
+    return () => clearInterval(interval)
+  }, [hasManualPreference])
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
+    setHasManualPreference(true)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.setAttribute('data-theme', newTheme)
-
-    // Toggle dark class
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    applyTheme(newTheme)
   }
 
   // Prevent flash of unstyled content
