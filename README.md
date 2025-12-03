@@ -1,4 +1,4 @@
-# ruoxiangxu.com or ruoxiangxu.github.io
+# ruoxiangxu.com
 
 Interactive terminal-style personal site built with Next.js 15 + Tailwind. This repo is just for my own portfolio, not a template.
 
