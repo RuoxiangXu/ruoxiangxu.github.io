@@ -74,7 +74,6 @@ Type 'contact' to get in touch!`
       content: `Contact Information
 ========================================
 
-
 📧 Email (University): ruoxianx@andrew.cmu.edu
 📧 Email (Personal):   ruoxiangxu2002@gmail.com
 📧 Email (Backup):     ruoxiangxu@outlook.com
